@@ -34,6 +34,17 @@ from schemas import (
 app = FastAPI(title="Incident Resolution API")
 
 
+@app.get("/")
+def health():
+    """Health check (Render hits this) — no external calls."""
+    try:
+        cfg = load_config()
+        provider = cfg.get("provider")
+    except Exception:
+        provider = None
+    return {"status": "ok", "llm_provider": provider or "none"}
+
+
 @app.on_event("startup")
 async def _startup() -> None:
     # NOTE: sync hindsight_client methods use run_until_complete internally,
