@@ -1,0 +1,15 @@
+# Agentic Frameworks
+openai
+agno
+google-genai
+groq
+hindsight-agno
+hindsight-client
+
+# # vector models
+# fastembed
+
+# Backend API
+fastapi
+uvicorn
+python-dotenv
