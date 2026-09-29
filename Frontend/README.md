@@ -1,3 +1,4 @@
+
 # Incident AI — Frontend
 
 > An incident-response agent **with a memory**. Paste a production log, and the agent recalls similar past
@@ -30,11 +31,12 @@ This repository is the **frontend** (React + TypeScript SPA). It talks to a sepa
 
 ## Run it
 
-```bash
+
 npm install
 npm run dev        # http://localhost:5173  (proxies /api to the deployed agent)
 npm run build      # typecheck + production build → dist/
 npm run lint
+
 ```
 
 No environment variables are required. Optional: `VITE_BACKEND_URL` (see `.env.example`).
@@ -43,26 +45,27 @@ No environment variables are required. Optional: `VITE_BACKEND_URL` (see `.env.e
 
 ```
 ├── api/
-│   └── [...path].ts          Vercel serverless relay → agent API (adds CORS, forwards path verbatim)
+│   └── [...path].ts        Vercel serverless relay → agent API (adds CORS, forwards path verbatim)
 ├── docs/
-│   ├── ARCHITECTURE.md       Layers, data flow, key decisions
-│   └── API_CONTRACT.md       Endpoints the frontend consumes
-├── public/                   Favicon, logo, web manifest
+│   ├── ARCHITECTURE.md     Layers, data flow, key decisions
+│   └── API_CONTRACT.md     Endpoints the frontend consumes
+├── public/                 Favicon, logo, web manifest
 └── src/
-    ├── main.tsx              Entry point
-    ├── app/                  App shell: routes, error boundary
-    ├── pages/                Route components (thin): Landing, Console, NotFound
+    ├── main.tsx            Entry point
+    ├── app/                App shell: routes, error boundary
+    ├── pages/              Route components (thin): Landing, Console, NotFound
     ├── features/
-    │   ├── landing/          Marketing page → sections/ (Navbar, Hero, HowItWorks, …)
-    │   └── console/          The product
-    │       ├── ConsoleProvider.tsx   ← all console state (chat, archive, feedback)
-    │       ├── ConsoleShell.tsx      ← sidebar / nav / view switching
+    │   ├── landing/        Marketing page → sections/ (Navbar, Hero, HowItWorks, …)
+    │   └── console/        The product
+    │       ├── ConsoleProvider.tsx    ← all console state (chat, archive, feedback)
+    │       ├── ConsoleShell.tsx       ← sidebar / nav / view switching
     │       ├── chat/  memory/  triage/
-    ├── services/agent/       All network code: config, http (retry/timeout), errors, normalize, client
-    ├── domain/incident.ts    Shared TypeScript types + severity styles
-    ├── data/                 Sample incident archive + simulated-outage presets
-    ├── components/           Shared UI: BrandMark, SeverityBadge, ui/ (shadcn primitives)
-    └── lib/utils.ts          `cn()` class helper
+    ├── services/agent/     All network code: config, http (retry/timeout), errors, normalize, client
+    ├── domain/incident.ts  Shared TypeScript types + severity styles
+    ├── data/               Sample incident archive + simulated-outage presets
+    ├── components/         Shared UI: BrandMark, SeverityBadge, ui/ (shadcn primitives)
+    └── lib/utils.ts        `cn()` class helper
+
 ```
 
 **Reading order for a reviewer:** `domain/incident.ts` → `services/agent/client.ts` →
@@ -74,12 +77,16 @@ React 19 · TypeScript (strict) · Vite 7 · Tailwind CSS v4 · shadcn/ui (Radix
 
 ## Design decisions worth noting
 
-- **Feature-based layout** — each console view owns its folder; shared code is lifted to `components/`, `domain/`, `services/`.
-- **Single network boundary** — components never call `fetch`; everything goes through `services/agent`, which
-  normalizes raw API payloads into typed domain objects.
-- **Resilient transport** — three routes tried in order (same-origin `/api` → public relay → direct), per-call
-  timeouts sized for cold starts, and every failure becomes an `ApiError` with a retry action in the UI.
-- **Stateless backend, stateful UI** — the API keeps no session, so the frontend resends the analysed incident with feedback.
-- **Route-level code splitting** — the landing page doesn't download console code.
+* **Feature-based layout** — each console view owns its folder; shared code is lifted to `components/`, `domain/`, `services/`.
+* **Single network boundary** — components never call `fetch`; everything goes through `services/agent`, which
+normalizes raw API payloads into typed domain objects.
+* **Resilient transport** — three routes tried in order (same-origin `/api` → public relay → direct), per-call
+timeouts sized for cold starts, and every failure becomes an `ApiError` with a retry action in the UI.
+* **Stateless backend, stateful UI** — the API keeps no session, so the frontend resends the analysed incident with feedback.
+* **Route-level code splitting** — the landing page doesn't download console code.
 
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for details.
+See [`docs/ARCHITECTURE.md`](https://www.google.com/search?q=docs/ARCHITECTURE.md) for details.
+
+```
+
+```
