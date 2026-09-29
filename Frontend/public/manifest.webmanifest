@@ -1,0 +1,17 @@
+{
+  "name": "Incident AI",
+  "short_name": "Incident AI",
+  "description": "Incident response AI agent with persistent memory for DevOps and SRE teams.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0b0f",
+  "theme_color": "#0a0b0f",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
