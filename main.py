@@ -12,6 +12,8 @@ Run with:  uvicorn main:app --reload   (use the .venv python)
 
 from fastapi import FastAPI, HTTPException, Query
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from agent import (
     _close_client,
     aget_document,
@@ -32,6 +34,16 @@ from schemas import (
 )
 
 app = FastAPI(title="Incident Resolution API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+"https://hindsight-project-incident-agent.onrender.com/",  # your deployed frontend URL
+    ],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
